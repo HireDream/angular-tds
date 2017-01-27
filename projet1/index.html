@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="NoteApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Projet 1 - AngularJS</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script src="js/noteApp.js"></script>
+    <script src="js/noteController.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body data-ng-controller="NoteController as noteCtrl">
+
+    <style>
+        body {
+            margin-left:3%;
+            margin-right:3%;
+        }
+    </style>
+
+    <h3>Note :</h3>
+    <textarea cols="100%" rows="10%" data-ng-model="noteCtrl.messageNote" data-ng-change="noteCtrl.count()"></textarea>
+
+    <br />
+
+    <button class="btn btn-primary">Enregistrer</button>
+    <button class="btn btn-primary" data-ng-click="noteCtrl.clear()">Effacer</button>
+
+    <br /><br />
+    <div class="alert alert-success" role="alert">
+    Nombre de caractères restant : {{noteCtrl.count()}}
+    </div>
+
+    <p></p>
+
+</body>
+</html>
