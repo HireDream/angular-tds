@@ -18,7 +18,7 @@
     </style>
 
     <h3>Note :</h3>
-    <textarea cols="100%" rows="10%" data-ng-model="noteCtrl.messageNote" data-ng-change="noteCtrl.count()"></textarea>
+    <textarea maxlength="100" cols="100%" rows="10%" data-ng-model="noteCtrl.messageNote" data-ng-change="noteCtrl.count()"></textarea>
 
     <br />
 
@@ -26,7 +26,7 @@
     <button class="btn btn-primary" data-ng-click="noteCtrl.clear()">Effacer</button>
 
     <br /><br />
-    <div class="alert alert-success" role="alert">
+    <div data-ng-class="{'alert-warning': noteCtrl.warning, 'alert-danger': noteCtrl.danger}" class="alert alert-info" role="alert">
     Nombre de caractères restant : {{noteCtrl.count()}}
     </div>
 
