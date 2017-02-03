@@ -1,18 +1,18 @@
 /**
  * Created by PICOT Maxence on 27/01/2017.
  */
-angular.module("NoteApp").controller("NoteController", function () {
+angular.module("NoteApp").controller("NoteController",["$cookies", function ($cookies) {
     var self = this;
-    this.messageNote = "";
+    this.messageNote = $cookies.get('note');
+    if ( !this.messageNote )
+        this.messageNote = "";
     this.info = "";
     this.warning = false;
     this.danger = false;
-    this.status = function () {
-
-    };
     
-    function save() {
-
+    this.save = function() {
+        self.info = "Note enregistrée.";
+        $cookies.put('note', self.messageNote);
     }
 
     this.clear = function() {
@@ -22,6 +22,7 @@ angular.module("NoteApp").controller("NoteController", function () {
     }
 
     this.count = function() {
+        self.info = "Note modifiée."
         r = 100-self.messageNote.length;
         if ( r < 10 ) {
             self.danger = true;
@@ -37,4 +38,4 @@ angular.module("NoteApp").controller("NoteController", function () {
     }
 
 
-});
+}]);
