@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="ServiceApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 2 - AngularJS</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/fr.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-ng-controller="ServiceController as serviceCtrl">
+
+<h1 class="title">Services</h1>
+
+<div class="alert alert-info" role="alert">
+    Choisissez les éléments à inclure
+</div>
+
+
+<div data-ng-repeat="service in serviceCtrl.services">
+    <div data-ng-class="{'select': service.active, 'nonSelect': !service.active}" class="service" data-ng-click="serviceCtrl.toggleActive(service)">
+        <div class="label">{{service.name}}</div> <div class="price">{{service.price|currency}}</div>
+    </div>
+</div>
+
+<hr>
+
+<div>
+    <div class="label">Total :</div> <div class="price">{{serviceCtrl.total()|currency}}</div>
+</div>
+
+
+</body>
+</html>
