@@ -14,8 +14,17 @@
 
 <h1 class="title">Services</h1>
 
-<div class="alert alert-info" role="alert">
-    Choisissez les éléments à inclure
+<div class="infos">
+    Choisissez les éléments à inclure<br>
+    <b>
+    <ng-pluralize count="serviceCtrl.nombreSelectionne()"
+                  when="{'0': 'Aucun service selectionné',
+                     '1': '1 service selectionné',
+                     '2': '2 services selectionnés',
+                     '3': '3 services selectionnés',
+                     '4': '4 services selectionnés'}">
+    </ng-pluralize>
+    </b>
 </div>
 
 
