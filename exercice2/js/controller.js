@@ -2,8 +2,29 @@
  * Created by PICOT Maxence on 03/02/2017.
  */
 
-angular.module("ServiceApp").controller("ServiceController", function () {
+angular.module("ServiceApp").controller("ServiceController",["$http", function ($http) {
     var self = this;
+    this.totals = 300;
+    this.promoCoche = false;
+    this.promoError = false;
+    this.totalAvecRemise = 0;
+    this.codePromo = "";
+    this.remise = 0;
+
+    this.promoExiste = function(){
+        $http.get("json/promos.json").then(function(response) {
+            self.remise = 0;
+            self.totalAvecRemise = 0;
+            self.promoError = true;
+            angular.forEach(response.data, function(value, key){
+                if(self.codePromo == key) {
+                    self.remise = self.totals*value;
+                    self.totalAvecRemise = self.totals-self.remise;
+                    self.promoError = false;
+                }
+            });
+        });
+    }
 
     this.services = [{
         "name": "Web Development",
@@ -28,6 +49,7 @@ angular.module("ServiceApp").controller("ServiceController", function () {
     
     this.toggleActive = function ($service) {
         $service.active = !$service.active;
+        self.promoExiste();
     };
 
     this.total = function () {
@@ -38,6 +60,7 @@ angular.module("ServiceApp").controller("ServiceController", function () {
                 total += self.services[i]['price'];
             }
         }
+        self.totals = total;
         return total;
     };
 
@@ -50,5 +73,4 @@ angular.module("ServiceApp").controller("ServiceController", function () {
         }
         return nb;
     };
-
-});
+}]);

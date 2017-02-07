@@ -37,9 +37,24 @@
 <hr>
 
 <div>
-    <div class="label">Total :</div> <div class="price">{{serviceCtrl.total()|currency}}</div>
+    <div class="label">Total :</div> <div class="price">{{serviceCtrl.total() |currency}}</div>
 </div>
 
+<div class="input-group promos">
+  <span class="input-group-addon">
+    <input type="checkbox" data-ng-checked="serviceCtrl.togglePromoActive()" data-ng-model="serviceCtrl.promoCoche">
+  </span>
+    <input type="text" class="form-control" data-ng-model="serviceCtrl.codePromo" data-ng-change="serviceCtrl.promoExiste()" placeholder="Ajouter un code promo">
+</div>
+
+<div data-ng-show="serviceCtrl.promoCoche && serviceCtrl.codePromo">
+    <div class="label">Remise :</div> <div class="price"><span ng-show="!serviceCtrl.promoError">{{serviceCtrl.remise | currency}}</span><span ng-show="serviceCtrl.promoError">Code promo invalide</span></div><br />
+    <div class="label">Total avec remise :</div> <div class="price">{{serviceCtrl.totalAvecRemise | currency}}</div>
+    <br />
+    <br />
+    <br />
+    <br />
+</div>
 
 </body>
 </html>
