@@ -1,0 +1,32 @@
+[
+  {
+    "nom": "PICOT",
+    "prenom": "Maxence",
+    "email": "maxence.picot.97@gmail.com"
+  },
+  {
+    "nom": "LAUNAY",
+    "prenom": "Mathis",
+    "email": "mathis.launay@gmail.com"
+  },
+  {
+    "nom": "PICOT",
+    "prenom": "Florian",
+    "email": "florian.picot@gmail.com"
+  },
+  {
+    "nom": "CHEVALIER",
+    "prenom": "Nathan",
+    "email": "nathan.chavalier@gmail.com"
+  },
+  {
+    "nom": "PAVIE",
+    "prenom": "Yann",
+    "email": "yann.pavie@gmail.com"
+  },
+  {
+    "nom": "LETELLIER",
+    "prenom": "Léa",
+    "email": "lea.letellier@gmail.com"
+  }
+]

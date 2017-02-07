@@ -11,5 +11,60 @@
 </head>
 <body data-ng-controller="ContactController as contactCtrl">
 
+<div class="form-group">
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Filter">
+</div>
+
+<table class="table table-striped">
+    <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th colspan="2">Actions</th>
+    </tr>
+
+    <tr data-ng-repeat="contact in contactCtrl.contacts">
+        <td>{{contact.nom}}</td>
+        <td>{{contact.prenom}}</td>
+        <td>{{contact.email}}</td>
+        <td><button data-ng-click="contactCtrl.toUpdate(contact)" class="btn btn-primary"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>
+        <td><button data-ng-click="contactCtrl.delete(contact)" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
+    </tr>
+</table>
+
+<button type="button" data-ng-click="contactCtrl.toAdd()" class="btn btn-primary">Ajouter un contact</button>
+
+<br><br>
+
+<form class="form-inline" data-ng-show="contactCtrl.add == true">
+    <h1>Ajouter un contact</h1>
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Entrez un nom...">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Prénom...">
+    </div>
+    <div class="form-group">
+        <input type="email" class="form-control" placeholder="Adresse email...">
+    </div>
+    <button data-ng-click="contactCtrl.add()" type="submit" class="btn btn-default">Ajouter</button>
+    <button data-ng-click="contactCtrl.add = false" type="submit" class="btn btn-default">Annuler</button>
+</form>
+
+<form class="form-inline" data-ng-show="contactCtrl.edit == true">
+    <h1>Modifier un contact</h1>
+    <div class="form-group">
+        <input type="text" data-ng-model="contactCtrl.tmpContact.nom" class="form-control" value="{{contactCtrl.tmpContact.nom}}">
+    </div>
+    <div class="form-group">
+        <input type="text" data-ng-model="contactCtrl.tmpContact.prenom" class="form-control" value="{{contactCtrl.tmpContact.prenom}}">
+    </div>
+    <div class="form-group">
+        <input type="email" data-ng-model="contactCtrl.tmpContact.email" class="form-control" value="{{contactCtrl.tmpContact.email}}">
+    </div>
+    <button data-ng-click="contactCtrl.update()" type="submit" class="btn btn-default">Modifier</button>
+    <button data-ng-click="contactCtrl.edit = false" type="submit" class="btn btn-default">Annuler</button>
+</form>
+
 </body>
 </html>
