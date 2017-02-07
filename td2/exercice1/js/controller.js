@@ -17,22 +17,25 @@ angular.module("ListeApp").controller("ListeController",["$http", function ($htt
 
 
     this.addToIncluded = function() {
-        self.includedItems.concat(self.selectedDispoItems);
+        self.includedItems = self.includedItems.concat(self.selectedDispoItems);
+        self.dispoItems = self.dispoItems.filter(function(x) { return self.selectedDispoItems.indexOf(x) < 0 })
         self.selectedDispoItems = [];
     }
     
     this.addAllToIncluded = function () {
-        self.includedItems.concat(self.dispoItems);
+        self.includedItems = self.includedItems.concat(self.dispoItems);
+        self.selectedDispoItems = [];
         self.dispoItems = [];
     }
     
     this.removeFromIncluded = function () {
-        self.dispoItems.concat(self.selectedIncludedItems);
+        self.dispoItems = self.dispoItems.concat(self.selectedIncludedItems);
+        self.includedItems = self.includedItems.filter(function(x) { return self.dispoItems.indexOf(x) < 0 })
         self.selectedDispoItems = [];
     }
     
-    this.RemoveAllFromIncluded = function () {
-        self.dispoItems.concat(self.includedItems);
+    this.removeAllFromIncluded = function () {
+        self.dispoItems = self.dispoItems.concat(self.includedItems);
         self.includedItems = [];
     }
 

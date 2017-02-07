@@ -6,8 +6,45 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controller.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body data-ng-controller="ListeController as listeCtrl">
 
+    <h1>Selectionnez vos produits</h1>
+
+    <div class="dispoItems">
+        <h3>Produits disponibles</h3>
+        <select width="300" size="10" data-ng-model="listeCtrl.selectedDispoItems" data-ng-options="item.title for item in listeCtrl.dispoItems" multiple></select>
+    </div>
+
+    <div class="allButtons">
+        <button data-ng-click="listeCtrl.addToIncluded()" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span></button><br />
+        <button data-ng-click="listeCtrl.addAllToIncluded()" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-fast-forward" aria-hidden="true"></span></button><br />
+        <button data-ng-click="listeCtrl.removeFromIncluded()" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span></button><br />
+        <button data-ng-click="listeCtrl.removeAllFromIncluded()" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-fast-backward" aria-hidden="true"></span></button><br />
+    </div>
+
+    <div class="includedItems">
+        <h3>Produits selectionnés</h3>
+        <select width="300" size="10" data-ng-model="listeCtrl.selectedIncludedItems" data-ng-options="item.title for item in listeCtrl.includedItems" multiple></select>
+    </div>
+
+    <br />
+    <ng-pluralize count="listeCtrl.selectedDispoItems.length"
+                  when="{'0': 'Aucun item selectionné',
+                     '1': '1 item selectionné',
+                     '2': '2 items selectionnés',
+                     '3': '3 items selectionnés',
+                     '4': '4 items selectionnés',
+                     '5': '5 items selectionnés',
+                     '6': '6 items selectionnés',
+                     '7': '7 items selectionnés',}">
+    </ng-pluralize>
+
+
+    <div class="alert alert-info" role="alert" style="text-align: right;">
+        <a href="">Etape suivante <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+    </div>
 </body>
 </html>
