@@ -12,7 +12,7 @@
 <body data-ng-controller="ContactController as contactCtrl">
 
 <div class="form-group">
-    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Filter">
+    <input data-ng-model="contactCtrl.filtre" type="text" class="form-control" id="exampleInputEmail1" placeholder="Filter">
 </div>
 
 <table class="table table-striped">
@@ -23,7 +23,7 @@
         <th colspan="2">Actions</th>
     </tr>
 
-    <tr data-ng-repeat="contact in contactCtrl.contacts">
+    <tr data-ng-repeat="contact in contactCtrl.contacts | filter:contactCtrl.filtre" data-ng-show="contact.deleted == false">
         <td>{{contact.nom}}</td>
         <td>{{contact.prenom}}</td>
         <td>{{contact.email}}</td>
@@ -33,7 +33,14 @@
 </table>
 
 <button type="button" data-ng-click="contactCtrl.toAdd()" class="btn btn-primary">Ajouter un contact</button>
+<button type="button" data-ng-show="contactCtrl.contacts.length-contactCtrl.countContact() > 0" data-ng-click="contactCtrl.cancel()" class="btn btn-danger">Annuler la suppression ({{contactCtrl.contacts.length-contactCtrl.countContact()}})</button>
 
+<br><br>
+<ng-pluralize count="contactCtrl.countContact()"
+              when="{'0': 'Aucun résultat',
+                         '1': '1 contact trouvé',
+                         'other': '{} contacts trouvés'}">
+</ng-pluralize>
 <br><br>
 
 <form class="form-inline" data-ng-show="contactCtrl.add == true">

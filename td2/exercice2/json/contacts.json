@@ -2,31 +2,31 @@
   {
     "nom": "PICOT",
     "prenom": "Maxence",
-    "email": "maxence.picot.97@gmail.com"
+    "email": "maxence.picot.97@gmail.com",
+    "deleted": false
   },
   {
     "nom": "LAUNAY",
     "prenom": "Mathis",
-    "email": "mathis.launay@gmail.com"
+    "email": "mathis.launay@gmail.com",
+    "deleted": false
   },
   {
     "nom": "PICOT",
     "prenom": "Florian",
-    "email": "florian.picot@gmail.com"
+    "email": "florian.picot@gmail.com",
+    "deleted": false
   },
   {
     "nom": "CHEVALIER",
     "prenom": "Nathan",
-    "email": "nathan.chavalier@gmail.com"
+    "email": "nathan.chavalier@gmail.com",
+    "deleted": false
   },
   {
     "nom": "PAVIE",
     "prenom": "Yann",
-    "email": "yann.pavie@gmail.com"
-  },
-  {
-    "nom": "LETELLIER",
-    "prenom": "Léa",
-    "email": "lea.letellier@gmail.com"
+    "email": "yann.pavie@gmail.com",
+    "deleted": false
   }
 ]

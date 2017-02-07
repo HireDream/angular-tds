@@ -8,9 +8,9 @@ angular.module("ContactApp").controller("ContactController",["$http", function (
     this.contacts = [];
     this.contact;
     this.tmpContact;
-    this.operation;
     this.edit = false;
     this.add = false;
+    this.filtre = "";
 
     $http.get("json/contacts.json").then(successCallBack);
     function successCallBack(response) {
@@ -30,6 +30,7 @@ angular.module("ContactApp").controller("ContactController",["$http", function (
     }
 
     this.addContact = function () {
+        self.tmpContact.deleted = false;
         self.contacts.push(self.tmpContact);
         self.add = false;
         self.tmpContact = null;
@@ -43,7 +44,23 @@ angular.module("ContactApp").controller("ContactController",["$http", function (
     }
 
     this.delete = function ($contact) {
-        var index = self.contacts.indexOf($contact);
-        self.contacts.splice(index, 1);
+        $contact.deleted = true;
+    }
+
+    this.countContact = function () {
+        count = 0;
+        for ( i = 0; i < self.contacts.length; i++) {
+            if ( self.contacts[i].deleted == false )
+                count++;
+        }
+
+        return count;
+    }
+
+    this.cancel = function () {
+        for ( i = 0; i < self.contacts.length; i++) {
+            if ( self.contacts[i].deleted == true )
+                self.contacts[i].deleted = false;
+        }
     }
 }]);
