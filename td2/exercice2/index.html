@@ -39,15 +39,15 @@
 <form class="form-inline" data-ng-show="contactCtrl.add == true">
     <h1>Ajouter un contact</h1>
     <div class="form-group">
-        <input type="text" class="form-control" placeholder="Entrez un nom...">
+        <input type="text" data-ng-model="contactCtrl.tmpContact.nom" class="form-control" placeholder="Entrez un nom...">
     </div>
     <div class="form-group">
-        <input type="text" class="form-control" placeholder="Prénom...">
+        <input type="text" data-ng-model="contactCtrl.tmpContact.prenom" class="form-control" placeholder="Prénom...">
     </div>
     <div class="form-group">
-        <input type="email" class="form-control" placeholder="Adresse email...">
+        <input type="email" data-ng-model="contactCtrl.tmpContact.email" class="form-control" placeholder="Adresse email...">
     </div>
-    <button data-ng-click="contactCtrl.add()" type="submit" class="btn btn-default">Ajouter</button>
+    <button data-ng-click="contactCtrl.addContact()" type="submit" class="btn btn-default">Ajouter</button>
     <button data-ng-click="contactCtrl.add = false" type="submit" class="btn btn-default">Annuler</button>
 </form>
 

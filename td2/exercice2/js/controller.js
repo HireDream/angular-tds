@@ -29,21 +29,21 @@ angular.module("ContactApp").controller("ContactController",["$http", function (
         self.edit = false;
     }
 
-    this.add = function () {
-
+    this.addContact = function () {
+        self.contacts.push(self.tmpContact);
+        self.add = false;
+        self.tmpContact = null;
     }
 
     this.update = function () {
         var index = self.contacts.indexOf(self.contact);
         self.contacts[index] = self.tmpContact;
         self.edit = false;
+        self.tmpContact = null;
     }
 
     this.delete = function ($contact) {
         var index = self.contacts.indexOf($contact);
         self.contacts.splice(index, 1);
     }
-
-
-
 }]);
