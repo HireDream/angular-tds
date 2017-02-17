@@ -25,23 +25,19 @@
         <th colspan="2">Actions</th>
     </tr>
 
-    <tr data-ng-repeat="contact in contactCtrl.contacts | notDeleted" contact-elem contact="contact" delete="contactCtrl.delete(contact)" update="contactCtrl.toUpdate(contact)">
-    </tr>
+    <tr data-ng-repeat="contact in contactCtrl.contacts | notDeleted | filter:contactCtrl.filtre as count" contact-elem contact="contact" delete="contactCtrl.delete(contact)" update="contactCtrl.toUpdate(contact)"></tr>
 </table>
 
 <button type="button" data-ng-click="contactCtrl.toAdd()" class="btn btn-primary">Ajouter un contact</button>
 <button type="button" data-ng-show="contactCtrl.contacts.length-contactCtrl.countContact() > 0" data-ng-click="contactCtrl.cancel()" class="btn btn-danger">Annuler la suppression ({{contactCtrl.contacts.length-contactCtrl.countContact()}})</button>
 
 <br><br>
-<ng-pluralize count="contactCtrl.countContact()"
-              when="{'0': 'Aucun résultat',
-                         '1': '1 contact trouvé',
-                         'other': '{} contacts trouvés'}">
+<ng-pluralize count="count.length"
+              when="{'0': 'Aucun résultat','1': '1 contact trouvé','other': '{} contacts trouvés'}">
 </ng-pluralize>
 <br><br>
 
-<form class="form-inline" data-ng-show="contactCtrl.edit == true" frm-contact tmpcontact="contactCtrl.tmpContact" operation="contactCtrl.operation" update="contactCtrl.update()" edit="contactCtrl.edit">
-</form>
+<form class="form-inline" data-ng-show="contactCtrl.edit == true" frm-contact tmpcontact="contactCtrl.tmpContact" operation="contactCtrl.operation" update="contactCtrl.update()" edit="contactCtrl.edit"></form>
 
 </body>
 </html>

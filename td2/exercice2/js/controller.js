@@ -11,6 +11,7 @@ angular.module("ContactApp").controller("ContactController",["$http", function (
     this.operation;
     this.edit = false;
     this.filtre = "";
+    this.count;
 
     $http.get("json/contacts.json").then(successCallBack);
     function successCallBack(response) {
