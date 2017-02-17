@@ -8,8 +8,8 @@ angular.module("ContactApp").controller("ContactController",["$http", function (
     this.contacts = [];
     this.contact;
     this.tmpContact;
+    this.operation;
     this.edit = false;
-    this.add = false;
     this.filtre = "";
 
     $http.get("json/contacts.json").then(successCallBack);
@@ -18,29 +18,32 @@ angular.module("ContactApp").controller("ContactController",["$http", function (
     }
 
     this.toUpdate = function($contact) {
-        self.add = false;
+        self.operation = "Modifier"
         self.edit = true;
         self.contact = $contact;
         self.tmpContact = Object.assign({}, self.contact);
     }
 
     this.toAdd = function () {
-        self.add = true;
-        self.edit = false;
+        self.operation = "Ajouter"
+        self.edit = true;
+        self.tmpContact = null;
     }
 
-    this.addContact = function () {
+    this.add = function () {
         self.tmpContact.deleted = false;
         self.contacts.push(self.tmpContact);
-        self.add = false;
-        self.tmpContact = null;
     }
 
     this.update = function () {
-        var index = self.contacts.indexOf(self.contact);
-        self.contacts[index] = self.tmpContact;
-        self.edit = false;
+        if ( self.operation == "Modifier") {
+            self.contacts[self.contacts.indexOf(self.contact)] = self.tmpContact;
+        } else {
+            self.add();
+        }
+
         self.tmpContact = null;
+        self.edit = false;
     }
 
     this.delete = function ($contact) {

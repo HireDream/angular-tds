@@ -6,15 +6,17 @@ angular.module("CurrencyApp").controller("CurrencyController",["$http", function
     var self = this;
 
     this.currencies;
+    this.from;
+    this.to;
 
     $http.get("json/currencymap.json").then(successCallBack);
     function successCallBack(response) {
         self.currencies = response.data;
+        self.from = self.currencies["EUR"];
+        self.to = self.currencies["USD"];
     }
 
     this.what = 1;
-    this.from = this.currencies['EUR'];
-    this.to = this.currencies['USD'];
     this.result;
 
     this.getResult = function () {

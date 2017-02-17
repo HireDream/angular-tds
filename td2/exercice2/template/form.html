@@ -1,0 +1,12 @@
+<h1>{{operation}} un contact</h1>
+<div class="form-group">
+    <input type="text" data-ng-model="tmpcontact.nom" class="form-control" value="{{tmpcontact.nom}}" placeholder="Nom">
+</div>
+<div class="form-group">
+    <input type="text" data-ng-model="tmpcontact.prenom" class="form-control" value="{{tmpcontact.prenom}}" placeholder="Prénom">
+</div>
+<div class="form-group">
+    <input type="email" data-ng-model="tmpcontact.email" class="form-control" value="{{tmpcontact.email}}" placeholder="Email">
+</div>
+<button data-ng-click="update()" type="submit" class="btn btn-default">Valider</button>
+<button data-ng-click="edit = false" type="submit" class="btn btn-default">Annuler</button>
