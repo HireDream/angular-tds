@@ -2,12 +2,13 @@
  * Created by PICOT Maxence on 07/02/2017.
  */
 
-angular.module("CurrencyApp").controller("CurrencyController",["$http", function ($http) {
+angular.module("CurrencyApp").controller("CurrencyController",["$http", "CurrencyService", function ($http,$service) {
     var self = this;
 
     this.currencies;
     this.from;
     this.to;
+    this.service = $service;
 
     $http.get("json/currencymap.json").then(successCallBack);
     function successCallBack(response) {
@@ -20,11 +21,12 @@ angular.module("CurrencyApp").controller("CurrencyController",["$http", function
     this.result;
 
     this.getResult = function () {
-        $http.jsonp('http://free.currencyconverterapi.com/api/v3/convert?compact=y&q='+self.from.code+'_'+self.to.code+'&callback=JSON_CALLBACK').
-        success(function(data, status, headers, config) {
-            self.result = data[self.from.code + '_' + self.to.code].val;
-        })
+        $http.jsonp('http://free.currencyconverterapi.com/api/v3/convert?compact=y&q='+self.from.code+'_'+self.to.code, {jsonpCallbackParam: 'callback'})
+            .then(function(response) {
+                self.result=response.data[self.from.code+'_'+self.to.code].val;
+            });
 
+        self.service.update(self.from,self.to,self.what,null,self.result);
         return self.result;
     }
 
