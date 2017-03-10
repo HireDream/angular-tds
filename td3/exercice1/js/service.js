@@ -8,37 +8,33 @@ angular.module("CurrencyApp").service('CurrencyService', function() {
     this.historique = [];
 
     this.update = function (from,to,what,hashisto,result) {
-        bool = 0;
-        x = 0;
-        for ( i = 0; i < self.historique.length & bool == 0; i++) {
+        this.conversion = null;
+        for ( i = 0; i < self.historique.length & this.conversion == null; i++) {
             tmp = self.historique[i];
-            if ( tmp.from.code == from.code & tmp.to.code == to.code) {
-                x = i;
-                bool = 1;
-            }
+            if ( tmp.from.code == from.code & tmp.to.code == to.code)
+                this.conversion = tmp;
         }
 
-        date = new Date();
-        var tx = result/what;
-        if ( bool == 0 ) {
+        this.tx = result/what;
+        if ( this.conversion == null ) {
             this.conversion = {
                 from: from,
                 to: to,
-                amount: function () { return this.rate*what; },
-                initialAmount: function () { return this.initialRate*what; },
+                amount : function(){ return this.what*this.rate},
+                initialAmount : function(){ return this.what*this.initialRate},
                 delta: 0,
-                rate: tx,
-                what: what,
-                date: date,
+                rate: this.tx,
+                what: 0,
+                date: null,
                 update: null,
-                initialRate: tx
+                initialRate: this.tx
             };
             self.historique.push(this.conversion);
-        } else {
-            self.historique[x].delta = (tx - self.historique[x].initialRate)*what;
-            self.historique[x].date = date;
-            self.historique[x].rate = tx;
         }
+
+        this.conversion.what = what;
+        this.conversion.date = new Date();
+        this.conversion.delta = (this.tx-this.conversion.initialRate)*what;
 
         return self.historique;
     }

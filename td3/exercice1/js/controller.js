@@ -24,9 +24,8 @@ angular.module("CurrencyApp").controller("CurrencyController",["$http", "Currenc
         $http.jsonp('http://free.currencyconverterapi.com/api/v3/convert?compact=y&q='+self.from.code+'_'+self.to.code, {jsonpCallbackParam: 'callback'})
             .then(function(response) {
                 self.result=response.data[self.from.code+'_'+self.to.code].val;
+                self.service.update(self.from,self.to,self.what,null,self.result);
             });
-
-        self.service.update(self.from,self.to,self.what,null,self.result);
         return self.result;
     }
 

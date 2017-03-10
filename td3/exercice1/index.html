@@ -57,7 +57,7 @@
                 <th colspan="2"></th>
             </tr>
 
-            <tr data-ng-repeat="item in currencyCtrl.service.historique">
+            <tr data-ng-repeat="item in currencyCtrl.service.historique track by $index" data-ng-class="{danger: item.delta < 0, success: item.delta > 0}">
                 <td>{{item.from.code}}</td>
                 <td>{{item.to.code}}</td>
                 <td>{{item.rate}}</td>
