@@ -64,11 +64,22 @@
                 <td>{{item.amount()}}</td>
                 <td>{{item.date.toLocaleString()}}</td>
                 <td>{{item.delta}}</td>
-                <td><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button></td>
+                <td><button data-ng-click="currencyCtrl.refresh(item)" type="button" class="btn btn-info"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button></td>
                 <td><button data-ng-click="currencyCtrl.service.remove(item)" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
             </tr>
-
         </table>
+
+        <form class="form-inline ng-pristine ng-valid">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <input type="checkbox" data-ng-model="autoRefresh" data-ng-change="" title="Auto-refresh" class="ng-pristine ng-untouched ng-valid">
+                </span>
+                <input type="number" class="form-control">
+                <span class="input-group-btn">
+                    <button ng-disabled="!autoRefresh" class="btn btn-primary" data-ng-click=""><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+                </span>
+            </div>
+        </form>
     </div>
 
 </body>

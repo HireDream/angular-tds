@@ -34,4 +34,12 @@ angular.module("CurrencyApp").controller("CurrencyController",["$http", "Currenc
         self.from = self.to;
         self.to = tmp;
     }
+
+    this.refresh = function (item) {
+        item.date = new Date();
+        self.from = self.currencies[item.from.code];
+        self.to = self.currencies[item.to.code];
+        self.result = item.amount();
+        self.what = item.what;
+    }
 }]);
