@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="MainModule">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular-route.min.js"></script>
+    <base href="/angular-tds/td5/exercice1/"/>
+    <script src="js/MainModule.js"></script>
+    <script src="js/AuthModule.js"></script>
+    <script src="js/MainController.js"></script>
+    <script src="js/ClientsController.js"></script>
+    <script src="js/ProductsController.js"></script>
+    <script src="js/InController.js"></script>
+    <script src="js/services/AuthService.js"></script>
+    <script src="js/services/DAOService.js"></script>
+</head>
+<body data-ng-controller="MainController as mainCtrl">
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Routage</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="home">Acceuil</a></li>
+                <li><a href="login">Login</a></li>
+                <li><a href="about">About</a></li>
+                <li><a href="in/">In</a></li>
+                <li><a href="in/exit">Exit</a></li>
+                <li><a href="in/clients">Clients</a></li>
+                <li><a href="in/products">Produits</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div ng-view></div>
+</body>
+</html>
